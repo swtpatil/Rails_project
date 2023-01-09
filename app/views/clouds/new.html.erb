@@ -1,0 +1,42 @@
+<h1>New Cloud</h1>
+
+<%= form_with model: @cloud do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% @cloud.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %><br>
+    <% @cloud.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<form action="/clouds" accept-charset="UTF-8" method="post">
+  <input type="hidden" name="authenticity_token" value="...">
+
+  <div>
+    <label for="cloud_title">Title</label><br>
+    <input type="text" name="cloud[title]" id="cloud_title">
+  </div>
+
+  <div>
+    <label for="cloud_body">Body</label><br>
+    <textarea name="cloud[body]" id="cloud_body"></textarea>
+  </div>
+
+  <div>
+    <input type="submit" name="commit" value="Create Cloud" data-disable-with="Create Cloud">
+  </div>
+</form>
+
