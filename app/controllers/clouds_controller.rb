@@ -1,4 +1,7 @@
 class CloudsController < ApplicationController
+
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
   def index
     @clouds = Cloud.all
   end
@@ -41,6 +44,6 @@ class CloudsController < ApplicationController
   end
   private
   def cloud_params
-    params.require(:cloud).permit(:title, :body)
+    params.require(:cloud).permit(:title, :body, :status)
   end
 end
